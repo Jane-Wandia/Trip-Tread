@@ -1,3 +1,3 @@
 class AirlineSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :name, :id
 end
