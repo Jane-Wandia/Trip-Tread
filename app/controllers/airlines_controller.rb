@@ -1,3 +1,5 @@
 class AirlinesController < ApplicationController
-
-end.
+    def index
+        render json: Airline.all
+    end
+end
