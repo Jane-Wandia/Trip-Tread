@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_message 
 rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
+before_action :authorize
     def index
     render json: Review.all
     end
@@ -22,6 +23,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
         head :no_content
     end
 
+    private
+
     def permitted_params
         params.permit(:trip, :review, :rating, :airline_id, :user_id)
     end
@@ -40,5 +43,9 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
 
     def not_found_message
         render json: {error: "Review not found"}, status: :not_found
+    end
+
+    def authorize
+        render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
     end
 end
