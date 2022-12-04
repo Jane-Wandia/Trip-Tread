@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :airlines, only:[:index]
+  resources :airlines, only:[:index, :show]
   resources :users, only:[:index, :destroy]
   resources :reviews, only:[:index, :update, :create, :destroy]
   # Routing logic: fallback requests for React Router.
