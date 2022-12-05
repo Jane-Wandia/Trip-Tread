@@ -8,7 +8,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_message
     def create
         user = User.create!(permitted_params)
         session[:user_id] = user.id
-        render json: user: :created
+        render json: user, status: :created
     end
 
     def destroy

@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_message 
 rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
-before_action :authorize
+# before_action :authorize
     def index
     render json: Review.all
     end
