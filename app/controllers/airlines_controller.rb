@@ -5,7 +5,7 @@ class AirlinesController < ApplicationController
 
     def show
         airline = Airline.find(params[:id])
-        render json: airline
+        render json: airline, include: ["users.reviews"], serializer: AirlineUserSerializer
     end
 
 end
