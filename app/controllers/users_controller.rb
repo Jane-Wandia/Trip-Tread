@@ -11,12 +11,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_message
         render json: user, serializer: UserCreateMethodSerializer, status: :created
     end
 
-    def destroy
-        user = find_by_id
-        user.destroy
-        head :no_content
-    end
-
     private 
 
     def find_by_id

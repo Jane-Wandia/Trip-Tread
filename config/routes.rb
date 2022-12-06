@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :airlines, only:[:index, :show]
-  resources :users, only:[:index, :destroy, :create]
+  resources :users, only:[:index, :create]
   resources :reviews, only:[:index, :update, :create, :destroy]
   resources :sessions
   post '/login', to: "sessions#create"
