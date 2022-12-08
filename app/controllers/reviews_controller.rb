@@ -38,7 +38,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
     end
 
     def update_params
-        params.permit(:review)
+        params.permit(:review, :id)
     end
 
     def not_found_message
