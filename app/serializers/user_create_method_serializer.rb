@@ -1,3 +1,3 @@
 class UserCreateMethodSerializer < ActiveModel::Serializer
-  attributes :id :fullname
+  attributes :id, :fullname
 end
