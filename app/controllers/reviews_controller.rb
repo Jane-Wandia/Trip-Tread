@@ -14,7 +14,7 @@ before_action :authorize
     def update
         review = find_by_id
         review.update!(update_params)
-        render json: Review.all
+        render json: review.airline, include: ["reviews.user"], serializer: AirlineUserSerializer
     end
     def destroy
         review = find_by_id
