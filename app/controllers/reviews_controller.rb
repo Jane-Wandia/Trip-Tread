@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_message 
 rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
-before_action :authorize
+    skip_before_action :authorize, only: [:index, :show]
     def index
     render json: Review.all
     end
@@ -9,6 +9,11 @@ before_action :authorize
     def create
         review = Review.create!(permitted_params)
         render json: review, status: :created
+    end
+
+    def show
+        review = find_by_id
+        render json: review, status: :ok
     end
 
     def update
@@ -45,7 +50,5 @@ before_action :authorize
         render json: {error: "Review not found"}, status: :not_found
     end
 
-    def authorize
-        render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
-    end
+   
 end

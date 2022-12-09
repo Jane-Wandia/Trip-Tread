@@ -1,4 +1,6 @@
 class AirlinesController < ApplicationController
+
+    skip_before_action :authorize
     def index
         render json: Airline.all
     end
