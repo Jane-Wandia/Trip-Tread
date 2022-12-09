@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_message 
 rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
-    skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorize
+    wrap_parameters format: []
     def index
     render json: Review.all
     end
@@ -30,7 +31,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
     private
 
     def permitted_params
-        params.permit(:trip, :review, :rating, :airline_id, :user_id)
+        params.permit(:trip, :review,  :airline_id, :user_id)
     end
 
     def invalid_message(invalid)
