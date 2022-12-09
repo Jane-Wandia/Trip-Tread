@@ -19,9 +19,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
     def update
         review = find_by_id
         review.update!(update_params)
-        render json: review
+        render json: Review.all
     end
-
     def destroy
         review = find_by_id
         review.destroy
